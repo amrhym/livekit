@@ -64,6 +64,26 @@ if __name__ == "__main__":
     if env_lines:
         env_file.write_text("".join(env_lines))
 
+    # environment.yml with agent specific imports
+    if agent.imports:
+        env_yml = agent_dir / "environment.yml"
+        env_yml.write_text(
+            "\n".join(
+                [
+                    f"name: {agent.name}_env",
+                    "channels:",
+                    "  - defaults",
+                    "  - conda-forge",
+                    "dependencies:",
+                    "  - python=3.11",
+                    "  - pip",
+                    "  - pip:",
+                ]
+                + [f"      - {pkg}" for pkg in agent.imports]
+            )
+            + "\n"
+        )
+
 
 @app.post("/agents", response_model=Agent, status_code=201)
 async def create_agent(agent_in: AgentCreate):
