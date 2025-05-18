@@ -5,7 +5,9 @@ This project provides a minimal FastAPI backend for creating and managing **Live
 ## Features
 
 * Create, list, update, and delete agents through RESTful APIs.
-* Generates an `agent.py` file and corresponding `.env` for every new agent.
+* Generates an `agent.py` file, `.env`, and `environment.yml` for every new agent.
+* Specify extra Python packages for each agent which are written to its
+  `environment.yml`.
 * Boilerplate agent script uses **python-dotenv** so your LiveKit credentials stay in environment files.
 * Conda `environment.yml` included for reproducible environments.
 
@@ -53,7 +55,8 @@ POST /agents
 }
 ```
 
-The response contains the newly generated `id`. An `agents/<id>/` folder with `agent.py` and `.env` will also be created on disk.
+The response contains the newly generated `id`. An `agents/<id>/` folder with
+`agent.py`, `.env`, and `environment.yml` will also be created on disk.
 
 ---
 Feel free to extend the project—for example by adding persistent storage (SQLModel, PostgreSQL, etc.) or by integrating directly with LiveKit's SDK. 
