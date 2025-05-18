@@ -1,0 +1,11 @@
+name: livekit_agent_env
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      - fastapi
+      - uvicorn[standard]
+      - python-dotenv 
